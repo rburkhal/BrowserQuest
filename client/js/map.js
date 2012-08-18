@@ -1,4 +1,3 @@
-
 define(['jquery', 'area'], function($, Area) {
     
     var Map = Class.extend({
@@ -26,8 +25,12 @@ define(['jquery', 'area'], function($, Area) {
         },
 
         _loadMap: function(useWorker) {
-        	var self = this,
-        	    filepath = "http://cdn.mozilla.net/browserquest/maps/world_client.json";
+            if(navigator.userAgent.toLowerCase().indexOf('chrome'))
+            {
+                var filepath = "./maps/world_client.json"; }
+            else{
+                var filepath = "http://cdn.mozilla.net/browserquest/maps/world_client.json" }            
+        	var self = this, filepath ;
         	
         	if(useWorker) {
         	    log.info("Loading map with web worker.");
@@ -55,7 +58,13 @@ define(['jquery', 'area'], function($, Area) {
         },
         
         _initTilesets: function() {
-            var tileset1, tileset2, tileset3, CDN = "http://cdn.mozilla.net/browserquest/";
+            if(!navigator.userAgent.toLowerCase().indexOf('chrome'))
+            {
+                var CDN = "http://cdn.mozilla.net/browserquest/";
+            }else{
+                var CDN = "./";
+            }            
+            var tileset1, tileset2, tileset3, CDN;
             
             if(!this.loadMultiTilesheets) {
                 this.tilesetCount = 1;
