@@ -27,9 +27,11 @@ define(['jquery', 'area'], function($, Area) {
         _loadMap: function(useWorker) {
             if(navigator.userAgent.toLowerCase().indexOf('chrome'))
             {
-                var filepath = "./maps/world_client.json"; }
+                var filepath = "./maps/world_client.json";                 
+            }
             else{
-                var filepath = "http://cdn.mozilla.net/browserquest/maps/world_client.json" }            
+                var filepath = "http://cdn.mozilla.net/browserquest/maps/world_client.json"                 
+            }            
         	var self = this, filepath ;
         	
         	if(useWorker) {
